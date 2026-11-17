@@ -6,7 +6,7 @@
 <meta http-equiv="Content-Security-Policy" content="default-src 'self'; script-src 'self' 'unsafe-inline'; style-src 'self' 'unsafe-inline' https://fonts.googleapis.com; font-src https://fonts.gstatic.com; img-src 'self' data:; connect-src 'self'; worker-src 'self'; manifest-src 'self'">
 <title>車と免許の期限</title>
 <meta name="claude:viewport-fit-sides" content="cover">
-<meta name="description" content="審査請求は3か月、取消訴訟は6か月、情報公開の決定は30日。役所への不服申立て・裁判・情報公開の期限（2週間〜1年）と、どのきまりかを、法律の条文から当てる1日5問の学習ゲーム。">
+<meta name="description" content="仮免許は6か月、新車の車検は最初3年、住所が変わったら15日。運転免許・車検・登録と届け出の期限（15日〜3年）と、どのきまりかを、法律の条文から当てる1日5問の学習ゲーム。">
 <meta name="theme-color" content="#f3efe4">
 <meta property="og:type" content="website">
 <meta property="og:site_name" content="車と免許の期限">
@@ -459,9 +459,9 @@ html.a11y-say body{padding-bottom:calc(64px + env(safe-area-inset-bottom,0px))!i
 <dialog id="howto" aria-labelledby="howto-t">
   <h2 id="howto-t">遊び方</h2>
   <ol>
-    <li>役所の処分への審査請求・取消訴訟・情報公開などの場面が出ます。</li>
-    <li>その期限（2週間〜1年）を押します。</li>
-    <li>正解したら、どのきまりか（不服申立て／裁判と意見公募／情報の開示）を3つから選びます。</li>
+    <li>仮免許・免許の更新・車検・名義変更などの場面が出ます。</li>
+    <li>その期限（15日〜3年）を押します。</li>
+    <li>正解したら、どのきまりか（運転免許／車検／登録と届け出）を3つから選びます。</li>
     <li>最後に、わけと資料の出どころが出ます。</li>
   </ol>
   <p>自信があるときは、答える前に「🎯 自信あり？」を押します（押さなくても遊べます）。</p>
@@ -644,7 +644,7 @@ function home() {
   const st = streak(s.days), rv = Depth.count();
   app.innerHTML = `
     <h1 class="title">車と免許の<span>期限</span></h1>
-    <p class="lead" data-a11y-say>その期限、どれだけ？<br>審査請求・取消訴訟・情報公開の期限を当てる1日5問。</p>
+    <p class="lead" data-a11y-say>その期限、どれだけ？<br>仮免許・車検・名義変更の期限を当てる1日5問。</p>
     <div class="fsrow" role="group" aria-label="文字の大きさ">文字<button data-fs="1" aria-pressed="${fs === 1}" aria-label="文字 ふつう">あ</button><button data-fs="2" aria-pressed="${fs === 2}" aria-label="文字 大きい" style="font-size:1.15em">あ</button><button data-fs="3" aria-pressed="${fs === 3}" aria-label="文字 とても大きい" style="font-size:1.3em">あ</button></div>
     <div class="tip" id="tip"><b>今日のきほん：${tip[0]}</b><br>${tip[1]}</div>
     ${done ? `<div class="share">今日の結果　${done.m.map(sq).join("")}</div>` : ""}
@@ -793,7 +793,7 @@ function paintWhy() {
 function chooseWhy(x) {
   if (cur.done || cur.step !== 2) return;
   if (!same(load().runs[MODE])) { toast("別の画面で先に進んでいます"); return play(); }
-  if (x !== cur.P.grp) { if (cur.w2.includes(x)) return; buzz(40); cur.w2.push(x); keep(); paintWhy(); $("msg").className = "msg bad"; $("msg").textContent = "✕ ちがいます。審査請求・再調査・再審査は不服申立て、取消訴訟とパブリックコメントは裁判と意見公募、文書や個人情報を見せる決定は情報の開示です。もう一度どうぞ。"; return; }
+  if (x !== cur.P.grp) { if (cur.w2.includes(x)) return; buzz(40); cur.w2.push(x); keep(); paintWhy(); $("msg").className = "msg bad"; $("msg").textContent = "✕ ちがいます。仮免許・更新・失効は運転免許、車検証の有効期間は車検、持ち主や住所の変更・抹消・車庫の届け出は登録と届け出です。もう一度どうぞ。"; return; }
   const b = document.querySelector(`.why button[data-g="${x}"]`); if (b) b.classList.add("ok");
   solved();
 }
